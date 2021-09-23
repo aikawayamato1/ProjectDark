@@ -60,13 +60,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\JournalMenu.cs" />
     <Compile Include="Assets\Script\Crouch.cs" />
     <Compile Include="Assets\Script\Flashlight.cs" />
     <Compile Include="Assets\Script\FlashlightGet.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
     <Compile Include="Assets\Script\GunGet.cs" />
     <Compile Include="Assets\Script\GunShoot.cs" />
+    <Compile Include="Assets\Script\JournalMenu.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\MouseLook.cs" />
     <Compile Include="Assets\Script\Movement.cs" />
