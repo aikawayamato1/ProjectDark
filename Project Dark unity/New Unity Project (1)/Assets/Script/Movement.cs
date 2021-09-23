@@ -10,7 +10,9 @@ public class Movement : MonoBehaviour
     public float speed;
     public float basespeed;
     private Rigidbody rigidbody;
+    public bool isActiveMenu;
 
+    public GameObject Canvas;
     public float jumpheight =3f;
     public bool isRunning = false;
     public float stamina = 100f;
@@ -29,6 +31,7 @@ public class Movement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         lastpost = transform.position;
         SetMaxStamina(basestamina);
+        isActiveMenu = false;
     }
 
     // Update is called once per frame
@@ -36,7 +39,33 @@ public class Movement : MonoBehaviour
     {
         Sprint();
         Move();
+        Journal();
+    }
+    public void Journal()
+    {
+        if(Input.GetKeyDown(KeyCode.Q) )
+        {
+          if(isActiveMenu)
+            {
+                JournalClosed();
+            }
+          else
+            {
+                JournalOpen();
+            }
+        }
         
+
+    }
+    void JournalOpen()
+    {
+        Canvas.SetActive(true);
+        isActiveMenu= true;
+    }
+    void JournalClosed()
+    {
+        Canvas.SetActive(false);
+        isActiveMenu = false;
     }
     public void Move()
     {
