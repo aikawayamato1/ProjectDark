@@ -8,6 +8,7 @@ public class Monster : MonoBehaviour
     public GameObject Player;
     public float Distance;
 
+    //Chase
     public bool isAngered;
 
     public NavMeshAgent monster;
@@ -15,7 +16,8 @@ public class Monster : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        monster = GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame
@@ -41,5 +43,6 @@ public class Monster : MonoBehaviour
         {
             monster.isStopped = true;
         }
+
     }
 }

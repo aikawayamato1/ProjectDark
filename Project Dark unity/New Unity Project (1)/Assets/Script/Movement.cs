@@ -11,6 +11,10 @@ public class Movement : MonoBehaviour
     public float basespeed;
     private Rigidbody rigidbody;
     public bool isActiveMenu;
+    private bool isRegenerate;
+    public CanvasGroup staminaslide;
+    private bool mFaded=false;
+    float alpha;
 
     public GameObject Canvas;
     public float jumpheight =3f;
@@ -25,12 +29,17 @@ public class Movement : MonoBehaviour
     Vector3 lastpost;
     Vector3 velocity;
     bool isGrounded;
+
+    float x;
+    float z;
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         lastpost = transform.position;
         SetMaxStamina(basestamina);
+        alpha = staminaslide.alpha;
         isActiveMenu = false;
     }
 
@@ -40,6 +49,7 @@ public class Movement : MonoBehaviour
         Sprint();
         Move();
         Journal();
+        Faded();
     }
     public void Journal()
     {
@@ -56,6 +66,13 @@ public class Movement : MonoBehaviour
         }
         
 
+    }
+    void Faded()
+    {
+        if (stamina == basestamina)
+        {
+            staminaslide.alpha -= Time.deltaTime;
+        }
     }
     void JournalOpen()
     {
@@ -80,12 +97,12 @@ public class Movement : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity);
         }
         
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+         x = Input.GetAxis("Horizontal");
+         z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
-
+        
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
@@ -102,15 +119,17 @@ public class Movement : MonoBehaviour
     }
     public void Sprint()
     {
-
-
+        
+        
         if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
         {
             speed = 20f;
-            if(controller.velocity.magnitude > 0.0f)
+            if(x!=0||z!=0)
             {
+                staminaslide.alpha += Time.deltaTime;
                 stamina--;
                 SetStamina(stamina);
+                isRegenerate = false;
             }
 
             
@@ -125,29 +144,39 @@ public class Movement : MonoBehaviour
             backtobasespeed();
             if (stamina < basestamina)
             {
-                stamina++;
-                SetStamina(stamina);
+                StartCoroutine(Regen(1.5f));
+                if(isRegenerate ==true)
+                {
+                    stamina++;
+                    SetStamina(stamina);
+                }
+                
             }
         }
 
 
     }
-
+    
 
     IEnumerator Regen(float waitTime)
     {
-        yield return new WaitForSeconds(waitTime);
+        
+        
+        
+            yield return new WaitForSeconds(waitTime);
+            isRegenerate = true;
+        
        
+        
     }
 
 
-    public void Cro(float minusspeed)
+    public void Cro()
     {
          
-        if(speed>minusspeed)
-        {
-            speed--;
-        }
+        
+            speed = 3f;
+        
     }
     public void croreturn()
     {
