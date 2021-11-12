@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     
 
-    private WeaponSelector item;
+    private ItemSelector item;
     
     
 
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
       
         Player = GameObject.Find("Player");
 
-        item = Player.GetComponent<WeaponSelector>();
+        item = Player.GetComponent<ItemSelector>();
        
 
         

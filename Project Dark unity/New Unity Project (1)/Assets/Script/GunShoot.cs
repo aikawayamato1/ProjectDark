@@ -11,17 +11,21 @@ public class GunShoot : MonoBehaviour
     public int bullet = 10;
     public Camera fpscam;
     public Text Ammo;
+    public Text itemname;
     public GameObject impactEffect;
-    private WeaponSelector weapon;
+
     private GameObject Player;
     
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
-        weapon = Player.GetComponent<WeaponSelector>();
+        
     }
-
+    private void OnEnable()
+    {
+        itemname.text = "Gun";
+    }
     // Update is called once per frame
     void Update()
     {

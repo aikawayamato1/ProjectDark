@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Flashlight : MonoBehaviour
@@ -9,13 +10,19 @@ public class Flashlight : MonoBehaviour
     public GameObject lightsource;
     public KeyCode flash = KeyCode.F;
     public bool failSafe = false;
+    public Text itemname;
+    public Text desc;
     // Start is called before the first frame update
     void Start()
     {
         
 
     }
-
+    private void OnEnable()
+    {
+        itemname.text = "Flashlight";
+        desc.text = "--";
+    }
     // Update is called once per frame
     void Update()
     {

@@ -1,48 +1,62 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
-
 public class Monster : MonoBehaviour
 {
-    public GameObject Player;
-    public float Distance;
+    public NavMeshAgent agent;
+    public Transform player;
+    public LayerMask isGround, isPlayer;
 
-    //Chase
-    public bool isAngered;
+    //Patroling
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
 
-    public NavMeshAgent monster;
+    //States
+    public float sightRange;
+    public bool playerInSightRange;
+    public GameObject LOS;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        monster = GetComponent<NavMeshAgent>();
-
+        player = GameObject.Find("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Distance = Vector3.Distance(Player.transform.position, this.transform.position);
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, isPlayer);
 
-        if (Distance <=10)
-        {
-            isAngered = true;
-        }
-        if (Distance > 10f)
-        {
-            isAngered = false;
-        }
-        if (isAngered)
-        {
-            monster.isStopped = false;
-            monster.SetDestination(Player.transform.position);
-        }
+        if (!playerInSightRange) Patroling();
+        if (playerInSightRange) ChasePlayer();
+    }
+    public void Patroling()
+    {
+        if (!walkPointSet) SearchWalkPoint();
 
-        if (!isAngered)
-        {
-            monster.isStopped = true;
-        }
+        if (walkPointSet)
+            agent.SetDestination(walkPoint);
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        if (distanceToWalkPoint.magnitude < 1f)
+            walkPointSet = false;
 
     }
+    private void SearchWalkPoint()
+    {
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, isGround))
+            walkPointSet = true;
+    }
+
+    public void ChasePlayer()
+    {
+        agent.SetDestination(player.position);
+    }
+
 }

@@ -183,7 +183,11 @@ public class Movement : MonoBehaviour
         speed = basespeed;
     }
 
-    
+    public void turnzerospeed()
+    {
+
+        speed = 0f;  
+    }
 
     public void backtobasespeed()
     {
