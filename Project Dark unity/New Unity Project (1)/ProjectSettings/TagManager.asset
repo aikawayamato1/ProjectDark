@@ -11,6 +11,8 @@ TagManager:
   - Scanner
   - Item
   - Flashlight
+  - Hide
+  - Health
   layers:
   - Default
   - TransparentFX
@@ -21,12 +23,12 @@ TagManager:
   - 
   - 
   - Lighting
-  - Ground
+  - isGround
   - Postprocessing
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Hide
+  - Items
+  - isPlayer
   - 
   - 
   - 
