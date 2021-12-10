@@ -61,20 +61,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Crouch.cs" />
+    <Compile Include="Assets\Script\Done.cs" />
+    <Compile Include="Assets\Script\EnemyAttack.cs" />
+    <Compile Include="Assets\Script\EvidenceCheck.cs" />
     <Compile Include="Assets\Script\Flashlight.cs" />
     <Compile Include="Assets\Script\FlashlightGet.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Script\GameOver.cs" />
     <Compile Include="Assets\Script\GunGet.cs" />
     <Compile Include="Assets\Script\GunShoot.cs" />
+    <Compile Include="Assets\Script\Hide.cs" />
+    <Compile Include="Assets\Script\HitEnemyAlert.cs" />
+    <Compile Include="Assets\Script\ItemSelector.cs" />
     <Compile Include="Assets\Script\JournalMenu.cs" />
+    <Compile Include="Assets\Script\LineofSight.cs" />
+    <Compile Include="Assets\Script\LoadingScreen.cs" />
+    <Compile Include="Assets\Script\MainMenu.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\MouseLook.cs" />
     <Compile Include="Assets\Script\Movement.cs" />
     <Compile Include="Assets\Script\PlayerBullet.cs" />
+    <Compile Include="Assets\Script\PlayerHealth.cs" />
     <Compile Include="Assets\Script\Scanner.cs" />
     <Compile Include="Assets\Script\ScannerGet.cs" />
     <Compile Include="Assets\Script\Sprint.cs" />
-    <Compile Include="Assets\Script\WeaponSelector.cs" />
+    <Compile Include="Assets\Script\StageMenu.cs" />
+    <Compile Include="Assets\Script\YouWin.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

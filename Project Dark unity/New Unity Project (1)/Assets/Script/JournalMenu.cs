@@ -5,10 +5,13 @@ using UnityEngine;
 public class JournalMenu : MonoBehaviour
 {
     public GameObject Canvas;
-
+    public GameObject PrintButton;
+    private bool EvidencesPrintButton=false;
     private void OnEnable()
     {
         UnlockMouse();
+        PrintButton.SetActive(false);
+        EvidencesPrintButton = false;
     }
     private void OnDisable()
     {
@@ -20,6 +23,28 @@ public class JournalMenu : MonoBehaviour
         Canvas.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+    public void Evidence()
+    {
+        if(EvidencesPrintButton == false)
+        {
+            PrintButton.SetActive(true);
+            EvidencesPrintButton = true;
+        }
+        else
+        {
+            PrintButton.SetActive(false);
+            EvidencesPrintButton = false;
+        }
+        
+    }
+    public void Case()
+    {
+
+    }
+    public void Equipment()
+    {
+
     }
 
     public void next()

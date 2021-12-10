@@ -11,14 +11,15 @@ public class Movement : MonoBehaviour
     public float basespeed;
     private Rigidbody rigidbody;
     public bool isActiveMenu;
-    private bool isRegenerate;
+    private bool isRegenerate =false;
     public CanvasGroup staminaslide;
     private bool mFaded=false;
     float alpha;
+    bool isHiding = false;
 
     public GameObject Canvas;
     public float jumpheight =3f;
-    public bool isRunning = false;
+    public bool isRunning = true;
     public float stamina = 100f;
     public float basestamina = 100f;
     public float gravity = -9.81f;
@@ -29,6 +30,7 @@ public class Movement : MonoBehaviour
     Vector3 lastpost;
     Vector3 velocity;
     bool isGrounded;
+    bool isTouched=false;
 
     float x;
     float z;
@@ -50,6 +52,7 @@ public class Movement : MonoBehaviour
         Move();
         Journal();
         Faded();
+        CheckRegen();
     }
     public void Journal()
     {
@@ -86,20 +89,24 @@ public class Movement : MonoBehaviour
     }
     public void Move()
     {
-        isGrounded = Physics.CheckSphere(groundcheck.position, GroundDistance, groundMask);
+        //isGrounded = Physics.CheckSphere(groundcheck.position, GroundDistance, groundMask);
 
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity);
-        }
+       // if (isGrounded && velocity.y < 0)
+       // {
+          //  velocity.y = -2f;
+       // }
+       // if (Input.GetKey(KeyCode.Space) && isGrounded)
+       // {
+      //      velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity);
+       // }
         
          x = Input.GetAxis("Horizontal");
          z = Input.GetAxis("Vertical");
-
+        if (isTouched)
+        {
+            speed =3f;
+        }
+        
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
         
@@ -119,44 +126,70 @@ public class Movement : MonoBehaviour
     }
     public void Sprint()
     {
-        
-        
-        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+
+        if (isRunning == true)
         {
-            speed = 20f;
-            if(x!=0||z!=0)
+            if (Input.GetKey(KeyCode.LeftShift) && stamina > 0 && !isTouched)
             {
-                staminaslide.alpha += Time.deltaTime;
-                stamina--;
-                SetStamina(stamina);
-                isRegenerate = false;
-            }
-
-            
-
-
-
-
-
-        }
-        else
-        {
-            backtobasespeed();
-            if (stamina < basestamina)
-            {
-                StartCoroutine(Regen(1.5f));
-                if(isRegenerate ==true)
+                speed = speed + 10f;
+                if (x != 0 || z != 0)
                 {
-                    stamina++;
+                    staminaslide.alpha += Time.deltaTime;
+                    stamina-=0.5f;
                     SetStamina(stamina);
+                    isRegenerate = false;
                 }
+
                 
+
+
+
+
+
             }
+        }
+        
+       if (Input.GetKeyUp(KeyCode.LeftShift)&& !isTouched)
+        {
+
+            Regeneration();
+            
         }
 
 
     }
-    
+    void Regeneration()
+    {
+        isRunning = false;
+        backtobasespeed();
+        if (stamina < basestamina)
+        {
+            StartCoroutine(Regen(1.5f));
+
+            
+        }
+    }
+    public void HidingCheck()
+    {
+        isHiding = true;
+    }
+    void CheckRegen()
+    {
+        if (isRegenerate == true)
+        {
+
+            stamina++;
+            SetStamina(stamina);
+            if (stamina >= basestamina||isHiding)
+            {
+                isRegenerate = false;
+                isRunning = true;
+               
+            }
+                
+                
+        }
+    }
 
     IEnumerator Regen(float waitTime)
     {
@@ -169,8 +202,28 @@ public class Movement : MonoBehaviour
        
         
     }
+    public void hitted()
+    {
 
 
+
+
+        
+        StartCoroutine(backtoNormal(3.5f));
+           
+        
+        
+    }
+    IEnumerator backtoNormal(float time)
+    {
+
+        
+        isTouched = true;
+        yield return new WaitForSeconds(time);
+        isTouched = false;
+        Debug.Log("hitted!");
+        backtobasespeed();
+    }
     public void Cro()
     {
          
@@ -183,7 +236,11 @@ public class Movement : MonoBehaviour
         speed = basespeed;
     }
 
-    
+    public void turnzerospeed()
+    {
+
+        speed = 0f;  
+    }
 
     public void backtobasespeed()
     {
