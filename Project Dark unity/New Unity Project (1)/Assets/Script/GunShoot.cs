@@ -16,7 +16,12 @@ public class GunShoot : MonoBehaviour
     private HitEnemyAlert isHittingMonster;
     private GameObject Player;
     private GameObject Monsters;
-    private GameManager gm;
+    public GameManager gm;
+    public bool cantShoot;
+    public GameObject journalisOpen;
+    private JournalMenu jm;
+    private GameObject AudioSourcePlayer;
+    public AudioManager am;
 
 
     // Start is called before the first frame update
@@ -25,20 +30,32 @@ public class GunShoot : MonoBehaviour
         Player = GameObject.Find("Player");
         Monsters = GameObject.FindGameObjectWithTag("Monster");
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        AudioSourcePlayer = GameObject.Find("AudioSourcePlayer");
+        am = AudioSourcePlayer.GetComponent<AudioManager>();
+
+
     }
     private void OnEnable()
     {
         itemname.text = "Gun";
     }
+    
     // Update is called once per frame
     void Update()
     {
         isHittingMonster = GameObject.Find("Gun").GetComponent<HitEnemyAlert>();
-        if(Input.GetButtonDown("Fire1")&& bullet > 0 )
+        cantShoot = gm.GetJournal();
+        if (!cantShoot)
         {
-            Shoot();
-            
+            if (Input.GetButtonDown("Fire1") && bullet > 0)
+            {
+                am.GunShooting();
+                Shoot();
+                
+            }
         }
+        
+        
         
         
             Ammo.text = bullet + "/10";

@@ -17,6 +17,11 @@ public class Monster : MonoBehaviour
     public Animator anim;
     public bool getShoot=false;
     public float timer=10f;
+    private EnemyAttack EA;
+
+
+    public MonsterAudio am;
+    public AudioSource audio;
 
     //Patroling
     public Vector3 walkPoint;
@@ -46,7 +51,9 @@ public class Monster : MonoBehaviour
         anim = GetComponent<Animator>();
         interact = GameObject.Find("Interact");
         hider = interact.GetComponent<Hide>();
-         
+        am = GetComponent<MonsterAudio>();
+        audio = GameObject.Find("MonsterAudio").GetComponent<AudioSource>();
+        EA = GetComponent<EnemyAttack>();
     }
 
     private void Update()
@@ -55,8 +62,8 @@ public class Monster : MonoBehaviour
         playerRound = Physics.CheckSphere(transform.position, round,isPlayer);
         
         hidingcheck = hider.GetisHiding();
-
-     
+       
+       
         
         if (playerInSightRange|| getShoot)
         {
@@ -76,7 +83,7 @@ public class Monster : MonoBehaviour
                     }
                 }
 
-                Debug.Log("Chase");
+              
                 ChasePlayer();
                 
                 
@@ -106,7 +113,7 @@ public class Monster : MonoBehaviour
 
                     }
                 }
-                Debug.Log("Chase");
+
                 ChasePlayer();
                 
 
@@ -151,6 +158,7 @@ public class Monster : MonoBehaviour
         if (walkPointSet)
         {
             AnimatingWalk();
+            AudioPlaying();
             agent.SetDestination(walkPoint);
             
         }
@@ -172,10 +180,39 @@ public class Monster : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, isGround))
             walkPointSet = true;
     }
+    private void AudioPlaying()
+    {
+        if (transform.position.magnitude <= 0f || EA.GetHitted() == true)
+        {
 
+            am.StopPlayMusic();
+        }
+        else
+        {
+            am.PlayWalk();
+            
+        }
+        
+    }
+    private void AudioPlayingRun()
+    {
+        if (transform.position.magnitude <= 0f || EA.GetHitted()==true)
+        {
+
+            am.StopPlayMusic();
+
+
+        }
+        else
+        {
+            am.PlayRun();
+            
+        }
+
+    }
     public void ChasePlayer()
     {
-        
+        AudioPlayingRun();
         agent.SetDestination(player.transform.position);
 
     }

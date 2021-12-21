@@ -16,6 +16,7 @@ public class EnemyAttack : MonoBehaviour
     private bool hitted = false;
     private float speed = 7f;
     public Animator anim;
+    public MonsterAudio MA;
 
     private void Update()
     {
@@ -32,6 +33,7 @@ public class EnemyAttack : MonoBehaviour
         mover = Player.GetComponent<Movement>();
         Blood = UIBloodEffect.GetComponent<CanvasGroup>();
         Blood.alpha = 0;
+        MA = GetComponent<MonsterAudio>();
     }
     private void fadingEffect()
     {
@@ -54,7 +56,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            
+            MA.PlayAttack();
             if (hitted == false)
             {
 
@@ -63,7 +65,10 @@ public class EnemyAttack : MonoBehaviour
             }
         }
     }
-   
+   public bool GetHitted()
+    {
+        return hitted;
+    }
     void hitPlayer()
     {
         healths.healthminus();

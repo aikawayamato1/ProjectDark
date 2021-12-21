@@ -12,23 +12,21 @@ public class EvidenceCheck : MonoBehaviour
     private int wincond=0;
     void Start()
     {
-        m_Toggle.onValueChanged.AddListener(delegate {
-            Evidence1(m_Toggle);
-            Evidence2(m_Toggle);
-            Evidence3(m_Toggle);
-            Evidence4(m_Toggle);
-            Evidence5(m_Toggle);
-            Evidence6(m_Toggle);
-            Evidence7(m_Toggle);
-            
-        });
+        
         wincond = 0;
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         ev = new bool[7];
     }
+    private void Update()
+    {
+        gm.checktype();
+    }
 
     public bool animal=false;
-    
+    public bool hybrid = false;
+    public bool humanoid = false;
+    public bool chaos = false;
+
     public bool e1 = false;
     public bool e2 = false;
     public bool e3 = false;
@@ -69,27 +67,85 @@ public class EvidenceCheck : MonoBehaviour
         if (change.isOn == true)
         {
             animal = true;
+           
         }
         else
         {
             animal = false;
+           
         }
+        
+    }
+    public void isHybrid(Toggle change)
+    {
+        if (change.isOn == true)
+        {
+            hybrid = true;
+           
+        }
+        else
+        {
+            hybrid = false;
+            
+        }
+        
+    }
+    public void isHumanoid(Toggle change)
+    {
+        if (change.isOn == true)
+        {
+            humanoid = true;
+            
+        }
+        else
+        {
+            humanoid = false;
+           
+        }
+        
+    }
+    public void isChaos(Toggle change)
+    {
+        if (change.isOn == true)
+        {
+            chaos = true;
+            
+        }
+        else
+        {
+            chaos = false;
+            
+        }
+        
     }
     public bool animl()
     {
         return animal;
     }
+    public bool hybr()
+    {
+        return hybrid;
+    }
+    public bool hum()
+    {
+        return humanoid;
+    }
+    public bool chs()
+    {
+        return chaos;
+    }
     public void Evidence1(Toggle change)
     {
         if(change.isOn==true)
         {
+            
             e1 = true;
         }
         else
         {
             e1 = false;
         }
-        gm.check();
+        gm.check1();
     }
     public void Evidence2(Toggle change)
     {
@@ -101,7 +157,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e2 = false;
         }
-        gm.check();
+        gm.check2();
     }
     public void Evidence3(Toggle change)
     {
@@ -113,7 +169,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e3 = false;
         }
-        gm.check();
+        gm.check3();
     }
     public void Evidence4(Toggle change)
     {
@@ -125,7 +181,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e4 = false;
         }
-        gm.check();
+        gm.check4();
     }
     public void Evidence5(Toggle change)
     {
@@ -137,7 +193,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e5 = false;
         }
-        gm.check();
+        gm.check5();
     }
     public void Evidence6(Toggle change)
     {
@@ -149,7 +205,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e6 = false;
         }
-        gm.check();
+        gm.check6();
     }
     public void Evidence7(Toggle change)
     {
@@ -161,7 +217,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e7 = false;
         }
-        gm.check();
+        gm.check7();
     }
     public int getWin()
     {

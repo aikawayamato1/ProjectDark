@@ -6,16 +6,22 @@ public class JournalMenu : MonoBehaviour
 {
     public GameObject Canvas;
     public GameObject PrintButton;
+   
+    public GameManager gm;
     private bool EvidencesPrintButton=false;
+    
     private void OnEnable()
     {
         UnlockMouse();
         PrintButton.SetActive(false);
         EvidencesPrintButton = false;
+        
     }
+    
     private void OnDisable()
     {
         lockMouse();
+      
     }
 
     public void Exitmenu()
@@ -59,10 +65,12 @@ public class JournalMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        gm.thereisJournal();
     }
     void lockMouse()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        gm.thereisnoJournal();
     }
 }

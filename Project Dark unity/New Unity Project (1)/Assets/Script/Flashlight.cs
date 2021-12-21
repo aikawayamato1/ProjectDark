@@ -12,11 +12,13 @@ public class Flashlight : MonoBehaviour
     public bool failSafe = false;
     public Text itemname;
     public Text desc;
+    private GameObject AudioSourcePlayer;
+    public AudioManager am;
     // Start is called before the first frame update
     void Start()
     {
-        
-
+        AudioSourcePlayer = GameObject.Find("AudioSourcePlayer");
+        am = AudioSourcePlayer.GetComponent<AudioManager>();
     }
     private void OnEnable()
     {
@@ -32,6 +34,7 @@ public class Flashlight : MonoBehaviour
             {
                 failSafe = true;
                 lightsource.SetActive(true);
+                am.Flashlights();
                 isOn = true;
                 StartCoroutine(FailSafe());
             }
@@ -39,6 +42,7 @@ public class Flashlight : MonoBehaviour
             {
                 failSafe = true;
                 lightsource.SetActive(false);
+                am.Flashlights();
                 isOn = false;
                 StartCoroutine(FailSafe());
             }
