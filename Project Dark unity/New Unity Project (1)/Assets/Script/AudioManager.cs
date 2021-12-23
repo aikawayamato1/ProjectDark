@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
     public void ChangeWalk()
     {
         PlayerAudio.clip = walk;
+        PlayerAudio.pitch = 1.5f;
         if (PlayerAudio.isPlaying==false)
         {
             
@@ -45,8 +46,10 @@ public class AudioManager : MonoBehaviour
     public void ChangeRun()
     {
         PlayerAudio.clip = Run;
+        PlayerAudio.pitch = 2.5f;
         if (PlayerAudio.isPlaying == false)
         {
+           
 
             PlayerAudio.Play();
         }
@@ -65,5 +68,22 @@ public class AudioManager : MonoBehaviour
     {
         ItemAudio.clip = Medkit;
         ItemAudio.Play();
+    }
+    public void Scanning()
+    {
+
+        ItemAudio.clip = Scan;
+        
+        if (ItemAudio.isPlaying == false)
+        {
+
+            ItemAudio.Play();
+        }
+
+    }
+    public void ChangeStops()
+    {
+
+        ItemAudio.Stop();
     }
 }

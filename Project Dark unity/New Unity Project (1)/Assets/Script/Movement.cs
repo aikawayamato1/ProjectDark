@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-
+    
     public CharacterController controller;
-    public float speed;
-    public float basespeed;
+    public float speed=10f;
+    public float basespeed=10f;
     private Rigidbody rigidbody;
     public bool isActiveMenu;
     private bool isRegenerate =false;
@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     private bool mFaded=false;
     float alpha;
     bool isHiding = false;
+    public AudioManager AM;
+    bool running=false;
 
     public GameObject Canvas;
     public float jumpheight =3f;
@@ -26,10 +28,12 @@ public class Movement : MonoBehaviour
     public Transform groundcheck;
     public float GroundDistance = 0.4f;
     public LayerMask groundMask;
+    public Hide hides;
+    public bool isHidings;
     public Slider stm;
     Vector3 lastpost;
     Vector3 velocity;
-    bool isGrounded;
+    public bool isGrounded;
     bool isTouched=false;
 
     float x;
@@ -43,16 +47,26 @@ public class Movement : MonoBehaviour
         SetMaxStamina(basestamina);
         alpha = staminaslide.alpha;
         isActiveMenu = false;
+        AM = GameObject.Find("AudioSourcePlayer").GetComponent<AudioManager>();
+        hides = GameObject.Find("Interact").GetComponent<Hide>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Sprint();
+        
+        if (isHiding)
+        {
+            speed = 0f;
+        }
+        
         Move();
         Journal();
         Faded();
         CheckRegen();
+        audioPlaying();
+        
     }
     public void Journal()
     {
@@ -72,7 +86,7 @@ public class Movement : MonoBehaviour
     }
     void Faded()
     {
-        if (stamina == basestamina)
+        if (stamina >= basestamina)
         {
             staminaslide.alpha -= Time.deltaTime;
         }
@@ -91,29 +105,67 @@ public class Movement : MonoBehaviour
     {
         //isGrounded = Physics.CheckSphere(groundcheck.position, GroundDistance, groundMask);
 
-       // if (isGrounded && velocity.y < 0)
-       // {
-          //  velocity.y = -2f;
-       // }
-       // if (Input.GetKey(KeyCode.Space) && isGrounded)
-       // {
-      //      velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity);
-       // }
+        // if (isGrounded && velocity.y < 0)
+        // {
+        //  velocity.y = -2f;
+        // }
+        // if (Input.GetKey(KeyCode.Space) && isGrounded)
+        // {
+        //      velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity);
+        // }
         
-         x = Input.GetAxis("Horizontal");
-         z = Input.GetAxis("Vertical");
+
+
         if (isTouched)
         {
             speed =3f;
         }
         
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * speed * Time.deltaTime);
+
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
         
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+        
 
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+       
+            if (collision.gameObject.layer==9)
+            {
+                isGrounded = true;
+            }
+        
+    }
+   
+    private void audioPlaying()
+    {
+        
+        if (x != 0 || z != 0 )
+        {
+            if (running==true)
+            {
+                
+                AM.ChangeRun();
+            }
+            else
+            {
+                
+                AM.ChangeWalk();
+            }
+            
+        }
+        else
+        {
+            AM.ChangeStop();
+            
+        }
+    }
+    
     public void SetMaxStamina(float x)
     {
         stm.maxValue = x;
@@ -131,12 +183,15 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift) && stamina > 0 && !isTouched)
             {
+                running = true;
                 speed = speed + 10f;
+                
                 if (x != 0 || z != 0)
                 {
                     staminaslide.alpha += Time.deltaTime;
                     stamina-=0.5f;
                     SetStamina(stamina);
+                    
                     isRegenerate = false;
                 }
 
@@ -151,7 +206,7 @@ public class Movement : MonoBehaviour
         
        if (Input.GetKeyUp(KeyCode.LeftShift)&& !isTouched)
         {
-
+            running = false;
             Regeneration();
             
         }
@@ -169,10 +224,7 @@ public class Movement : MonoBehaviour
             
         }
     }
-    public void HidingCheck()
-    {
-        isHiding = true;
-    }
+   
     void CheckRegen()
     {
         if (isRegenerate == true)
@@ -180,7 +232,7 @@ public class Movement : MonoBehaviour
 
             stamina++;
             SetStamina(stamina);
-            if (stamina >= basestamina||isHiding)
+            if (stamina >= basestamina)
             {
                 isRegenerate = false;
                 isRunning = true;
@@ -238,12 +290,14 @@ public class Movement : MonoBehaviour
 
     public void turnzerospeed()
     {
-
+        isHiding = true;
+        Debug.Log("turn zero");
         speed = 0f;  
     }
 
     public void backtobasespeed()
     {
+        isHiding = false;
         speed = basespeed;
     }
 }

@@ -39,7 +39,11 @@ public class GunShoot : MonoBehaviour
     {
         itemname.text = "Gun";
     }
-    
+    private void OnDisable()
+    {
+        itemname.text = "--";
+
+    }
     // Update is called once per frame
     void Update()
     {
@@ -47,7 +51,7 @@ public class GunShoot : MonoBehaviour
         cantShoot = gm.GetJournal();
         if (!cantShoot)
         {
-            if (Input.GetButtonDown("Fire1") && bullet > 0)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && bullet > 0)
             {
                 am.GunShooting();
                 Shoot();

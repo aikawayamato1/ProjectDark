@@ -25,6 +25,11 @@ public class Flashlight : MonoBehaviour
         itemname.text = "Flashlight";
         desc.text = "--";
     }
+    private void OnDisable()
+    {
+        itemname.text = "--";
+
+    }
     // Update is called once per frame
     void Update()
     {

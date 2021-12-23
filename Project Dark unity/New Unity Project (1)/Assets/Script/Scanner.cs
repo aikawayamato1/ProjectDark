@@ -7,7 +7,8 @@ public class Scanner : MonoBehaviour
 {
 
     public Text Scanned;
-    
+    private GameObject AudioSourcePlayer;
+    public AudioManager am;
     public Color colore;
     MeshRenderer renderer;
     public GameObject Scanning;
@@ -17,22 +18,28 @@ public class Scanner : MonoBehaviour
     {
         renderer = gameObject.GetComponent<MeshRenderer>();
         Scanned.text = "--";
+        AudioSourcePlayer = GameObject.Find("AudioSourcePlayer");
+        am = AudioSourcePlayer.GetComponent<AudioManager>();
     }
     private void OnEnable()
     {
         itemname.text = "Scanner";
     }
+    private void OnDisable()
+    {
+        itemname.text = "--";
+        am.ChangeStops();
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Monster")
         {
             Scanning.transform.GetComponent<Renderer>().material.color = Color.red;
             Scanned.text = "Alert !!";
+            am.Scanning();
         }
-        else
-        {
-            Scanned.text = "--";
-        }
+        
         
     }
     private void OnTriggerExit(Collider other)
@@ -42,6 +49,7 @@ public class Scanner : MonoBehaviour
         {
             Scanning.transform.GetComponent<Renderer>().material.color = Color.white;
             Scanned.text = "--";
+            am.ChangeStops();
         }
     }
 }

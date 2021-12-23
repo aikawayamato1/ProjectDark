@@ -12,13 +12,18 @@ public class Hide : MonoBehaviour
     public Movement move;
     public bool isHiding =false;
     public GameObject otherObject;
-    
+    public Camera fpscam;
+    public float range = 5f;
     public GameObject PlayerBody;
 
     public GameObject Interact;
     public bool GetisHiding()
     {
         return isHiding;
+    }
+    public bool GetisHidings()
+    {
+        return hides;
     }
     void Start()
     {
@@ -29,62 +34,52 @@ public class Hide : MonoBehaviour
         
 
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Hide")
-        {
-            Interact.SetActive(true);
-            Canhides = true;
-            otherObject = other.gameObject;
-        }
-       
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Hide")
-        {
-            Interact.SetActive(false);
-            Canhides = false;
-            
-        }
-       
-    }
+    
 
 
     void hideFunc(GameObject other)
     {
-        if(Canhides==true && Input.GetKeyDown(hiding))
+        
+        if (Canhides==true && Input.GetKeyDown(hiding)&&!isHiding)
         {
             hider(other);
-            isHiding = true;
+            
+            
         }
-        else if (isHiding&&Input.GetKeyDown(hiding))
+        else
+        if (isHiding && Input.GetKeyDown(hiding))
         {
-            nohide(other);
-            isHiding = false;
+
+            nohide(otherObject);
+
+
         }
-       
     }
     
     public void hider(GameObject other)
     {
         Physics.IgnoreLayerCollision(11, 12, true);
 
-        Player.transform.position = other.transform.position;
-        move.enabled = false;
-        Player.GetComponent<BoxCollider>().enabled = true;
-        Player.GetComponent<Rigidbody>().isKinematic = true;
-        
+
+        Player.transform.position = otherObject.transform.position;
+        move.turnzerospeed();
+
+
+        isHiding = true;
+
         hides = true;
     }
     public void nohide(GameObject other)
     {
         Physics.IgnoreLayerCollision(11, 12, false);
-        
-        move.enabled = true;
-        Player.GetComponent<BoxCollider>().enabled = false;
-        Player.GetComponent<Rigidbody>().isKinematic = false;
-        
+
+        Player.transform.position = other.transform.position+new Vector3(1f,0f,1f);
+
+        move.backtobasespeed();
+        isHiding = false;
+
+
+
         hides = false;
     }
 
@@ -92,5 +87,28 @@ public class Hide : MonoBehaviour
     void Update()
     {
         hideFunc(otherObject);
+        
+        RaycastHit hit;
+        if(!isHiding)
+        {
+            if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit, range))
+            {
+                
+                if (hit.transform.tag == "Hide")
+                {
+                    Interact.SetActive(true);
+                    otherObject = hit.transform.gameObject;
+                    Canhides = true;
+                }
+                else
+                {
+                    Interact.SetActive(false);
+                    Canhides = false;
+                }
+            }
+        }
+        
+
     }
+    
 }

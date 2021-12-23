@@ -23,7 +23,7 @@ public class MonsterAudio : MonoBehaviour
     // Update is called once per frame
     public void PlayWalk()
     {
-        Debug.Log("isPlaying");
+       
         MA.clip = MonsterWalk;
         if (MA.isPlaying==false)
         {
