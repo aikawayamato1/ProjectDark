@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class EvidenceCheck : MonoBehaviour
 {
     Toggle m_Toggle;
-    
+    [Header("Game Manager")]
     public GameManager gm;
+    
     private bool[] ev;
     private int wincond=0;
     void Start()
@@ -20,13 +21,15 @@ public class EvidenceCheck : MonoBehaviour
     private void Update()
     {
         gm.checktype();
+        gm.check1();
     }
-
+    [Header("Evidence Type")]
     public bool animal=false;
     public bool hybrid = false;
     public bool humanoid = false;
     public bool chaos = false;
 
+    [Header("Evidence")]
     public bool e1 = false;
     public bool e2 = false;
     public bool e3 = false;
@@ -145,7 +148,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e1 = false;
         }
-        gm.check1();
+        
     }
     public void Evidence2(Toggle change)
     {
@@ -157,7 +160,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e2 = false;
         }
-        gm.check2();
+        
     }
     public void Evidence3(Toggle change)
     {
@@ -169,7 +172,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e3 = false;
         }
-        gm.check3();
+        
     }
     public void Evidence4(Toggle change)
     {
@@ -181,7 +184,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e4 = false;
         }
-        gm.check4();
+        
     }
     public void Evidence5(Toggle change)
     {
@@ -193,7 +196,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e5 = false;
         }
-        gm.check5();
+        
     }
     public void Evidence6(Toggle change)
     {
@@ -205,7 +208,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e6 = false;
         }
-        gm.check6();
+        
     }
     public void Evidence7(Toggle change)
     {
@@ -217,7 +220,7 @@ public class EvidenceCheck : MonoBehaviour
         {
             e7 = false;
         }
-        gm.check7();
+        
     }
     public int getWin()
     {

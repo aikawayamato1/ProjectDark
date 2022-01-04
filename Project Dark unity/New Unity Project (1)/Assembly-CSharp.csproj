@@ -82,6 +82,7 @@
     <Compile Include="Assets\Script\MainMenu.cs" />
     <Compile Include="Assets\Script\Monster.cs" />
     <Compile Include="Assets\Script\MonsterAudio.cs" />
+    <Compile Include="Assets\Script\MonsterSpawner.cs" />
     <Compile Include="Assets\Script\MouseLook.cs" />
     <Compile Include="Assets\Script\Movement.cs" />
     <Compile Include="Assets\Script\PlayerBullet.cs" />

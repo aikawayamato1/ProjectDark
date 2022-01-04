@@ -5,37 +5,48 @@ using System.Collections.Generic;
 
 public class Monster : MonoBehaviour
 {
+    [Header("Source")]
     public NavMeshAgent agent;
     public Transform player;
     public GameObject interact;
     public LayerMask isGround, isPlayer;
+
+    [Header("Hide System")]
     public Hide hider;
     private bool hidingcheck;
+
+    [Header("Variables")]
     public float round ;
     public float speed = 10.0f;
     public float acceleration = 11.0f;
+
+    [Header("Animator")]
     public Animator anim;
+
+    [Header("Combat")]
     public bool getShoot=false;
     public float timer=10f;
     private EnemyAttack EA;
 
-
+    [Header("Audio")]
     public MonsterAudio am;
     public AudioSource audio;
 
-    //Patroling
+    [Header("Patrolling")]
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
 
-    //States
+    [Header("States")]
     public float sightRange;
     public bool playerInSightRange;
     public bool playerRound;
     private bool chasing;
     public GameObject LOS;
 
+    [Header("Raycast")]
     private RaycastHit hit;
+
     public void Getshooted()
     {
         getShoot = true;

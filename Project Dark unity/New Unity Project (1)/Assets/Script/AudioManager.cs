@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("Source")]
     public GameObject Player;
     public AudioSource PlayerAudio;
     public AudioSource ItemAudio;
+    [Header("Clip")]
     public AudioClip walk;
     public AudioClip Run;
     public AudioClip shoot;

@@ -7,9 +7,9 @@ public class EnemyAttack : MonoBehaviour
 {
     private GameObject Player;
     public GameObject Enemies;
-    public GameObject UIBloodEffect;
-    bool fade=false;
-    private CanvasGroup Blood;
+    
+    
+    
     private Movement mover;
     private PlayerHealth healths;
     private NavMeshAgent nav;
@@ -17,11 +17,9 @@ public class EnemyAttack : MonoBehaviour
     private float speed = 7f;
     public Animator anim;
     public MonsterAudio MA;
+    public GameManager gm;
 
-    private void Update()
-    {
-        fadingEffect();
-    }
+    
     
     private void Start()
     {
@@ -31,27 +29,11 @@ public class EnemyAttack : MonoBehaviour
         Player = GameObject.Find("Player");
         healths = Player.GetComponent<PlayerHealth>();
         mover = Player.GetComponent<Movement>();
-        Blood = UIBloodEffect.GetComponent<CanvasGroup>();
-        Blood.alpha = 0;
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
         MA = GetComponent<MonsterAudio>();
     }
-    private void fadingEffect()
-    {
-      
-            Blood.alpha -= Time.deltaTime;
-            fade = false;
-        
-       
-        
-    }
-    private void ActiveEffect()
-    {
-        Blood.alpha = 1;
-
-        
-            
-        
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
@@ -72,7 +54,7 @@ public class EnemyAttack : MonoBehaviour
     void hitPlayer()
     {
         healths.healthminus();
-        ActiveEffect();
+        gm.ActiveEffect();
         mover.hitted();
         anim.SetBool("isAttacking", true);
         nav.speed = 0f;

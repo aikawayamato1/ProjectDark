@@ -6,26 +6,26 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    
-    public int a=0;
-    public int b=0;
-    public int c=0;
-    public bool winner;
+    [Header("Goals")]
+    public int a = 0;
+    public int b = 0;
+    public int c = 0;
+    public int randomselector;
+
+    [Header("Winning Condition")]
+    public bool x = false;
+    public bool y = false;
+    public bool z = false;
+
     public GameObject Winningcon;
 
+    [Header("Types")]
     public bool an;
     public bool hy;
     public bool hu;
     public bool ch;
 
-    public int a1 = 0;
-    public int b2 = 0;
-    public int c3 = 0;
-    public int d4 = 0;
-    public int E5 = 0;
-    public int f6 = 0;
-    public int g7 = 0;
-
+    [Header("Evidences")]
     public bool e1;
     public bool e2;
     public bool e3;
@@ -33,18 +33,28 @@ public class GameManager : MonoBehaviour
     public bool e5;
     public bool e6;
     public bool e7;
+    public bool type;
+
     int shooted =0;
 
+    private bool[] evidence;
     private bool isComplete;
-    public int randomselector;
-    public int winning=0;
+    
+    
     public EvidenceCheck ec;
+
+    [Header("Panels")]
     public GameObject how;
     public GameObject how1;
     public GameObject how2;
     public GameObject how3;
+
+    [Header("Etc")]
     public Text types;
     public bool HaveJournal=false;
+    public GameObject BloodEffect;
+    private CanvasGroup Blood;
+    
     //public static GameManager instance;
     // void Awake()
     // {
@@ -59,6 +69,10 @@ public class GameManager : MonoBehaviour
     //    }
 
     // }
+    public GameObject getBloodEffect()
+    {
+        return BloodEffect;
+    }
     public void GetComplete()
     {
         if(isComplete)
@@ -77,8 +91,9 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        
-        winning = 0;
+        Blood = BloodEffect.GetComponent<CanvasGroup>();
+        Blood.alpha = 0;
+
         ec = GameObject.Find("EvidenceChecker").GetComponent<EvidenceCheck>();
         while (a==b|| a == c || c == b)
         {
@@ -103,10 +118,13 @@ public class GameManager : MonoBehaviour
         {
             types.text = "Hybrid";
         }
-        
+        evidence = new bool[7];
     }
+
     private void Update()
     {
+        fadingEffect();
+
         e1 = ec.Getbool1();
         e2 = ec.Getbool2();
         e3 = ec.Getbool3();
@@ -114,11 +132,33 @@ public class GameManager : MonoBehaviour
         e5 = ec.Getbool5();
         e6 = ec.Getbool6();
         e7 = ec.Getbool7();
+
+        
+
+
+        
         an = ec.animl();
         hy = ec.hybr();
         hu = ec.hum();
         ch = ec.chs();
         
+    }
+    public void fadingEffect()
+    {
+
+        Blood.alpha -= Time.deltaTime;
+
+
+
+
+    }
+    public void ActiveEffect()
+    {
+        Blood.alpha = 1;
+
+
+
+
     }
     public void thereisJournal()
     {
@@ -132,114 +172,41 @@ public class GameManager : MonoBehaviour
     {
         return HaveJournal;
     }
-    public void winningincrease()
-    {
-        if (winning == 0)
-        {
-            winning = 1;
-        }
-        else
-           if (winning == 1)
-        {
-            winning = 2;
-        }
-        else
-           if (winning == 2)
-        {
-            winning = 3;
-        }
-    }
+    
     public void check1()
     {
-        
-        if (a == 1 || b == 1 || c == 1 && e1)
+        evidence[0] = e1;
+        evidence[1] = e2;
+        evidence[2] = e3;
+        evidence[3] = e4;
+        evidence[4] = e5;
+        evidence[5] = e6;
+        evidence[6] = e7;
+        int i = 0;
+        do
         {
 
-            winningincrease();
-
-
-
+            if (a == i+1 && evidence[i] )
+            {
+                x = true;
+            }
+            
+            if (b == i+1 && evidence[i] )
+            {
+                y = true;
+            }
+            
+            if (c == i+1 && evidence[i])
+            {
+                z = true;
+            }
+            i++;
         }
-        
+        while (i <= 7);
 
     }
-    public void check2()
-    {
-
-        
-        if (a == 2 || b == 2 || c == 2 && e2)
-        {
-
-            winningincrease();
-
-        }
-        
-
-    }
-    public void check3()
-    {
-
-        
-        if (a == 3 || b == 3 || c == 3 && e3)
-        {
-            winningincrease();
-
-        }
-        
-
-    }
-    public void check4()
-    {
-
-        
-        if (a == 4 || b == 4 || c == 4 && e4)
-        {
-
-            winningincrease();
-
-        }
-        
-
-    }
-    public void check5()
-    {
-
-        
-        if (a == 5 || b == 5 || c == 5 && e5)
-        {
-
-            winningincrease();
-
-        }
-       
-
-    }
-    public void check6()
-    {
-
-       
-        if (a == 6 || b == 6 || c == 6 && e6)
-        {
-
-            winningincrease();
-
-        }
-        
-
-    }
-    public void check7()
-    {
-
-        
-        if (a == 7 || b == 7 || c == 7 && e7)
-        {
-
-            winningincrease();
-
-        }
-
-    }
-    public bool type;
+    
+    
     public bool checktype()
     {
         
@@ -272,8 +239,8 @@ public class GameManager : MonoBehaviour
     }
     public void Print()
     {
-        
-        if(winning>=3 && type==true)
+
+        if (x == true && y == true && z == true && type==true)
         {
             if (randomselector == 1)
             {
@@ -304,7 +271,10 @@ public class GameManager : MonoBehaviour
     {
         Winningcon.SetActive(true);
     }
-
+    public int getMonsterIndex()
+    {
+        return randomselector;
+    }
     public int ax()
     {
         return a;

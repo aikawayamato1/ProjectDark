@@ -6,36 +6,50 @@ using UnityEngine.UI;
 public class ItemSelector : MonoBehaviour
 {
     
-    public bool Flashlight = false;
-    public bool Gun = false;
-    public bool Scanner = false;
+   
     int totalitem = 0;
+
+    [Header("Items")]
     public GameObject[] items;
     private int i = 0;
     private bool fl;
     private bool gn;
     private bool sc;
     public int currentWeapon = 0;
-    public Collider otherObject;
+
+    [Header("Camera")]
     public Camera fpscam;
+
+    [Header("Game Manager")]
     public GameManager gm;
+
+    [Header("Evidence")]
     public int totalEvidence=0;
+
+    [Header("Text")]
     public Text A;
     public Text B;
     public Text C;
-
     public Text FL;
     public GameObject Interacttext;
     string itemname;
+
+    [Header("Raycasts")]
     public float range = 100f;
+
+    [Header("Player Health")]
     private PlayerHealth ph;
+
+    
     [SerializeField]
-    public GameObject flashlight, gun, scanner;
+    [Header("Game Object")]
+    public GameObject flashlight;
+    public GameObject gun;
+    public GameObject scanner;
 
-    
-    
 
-    public bool ActiveWeapon = false;
+
+
 
     public ItemSelector(int i)
     {
@@ -202,25 +216,7 @@ public class ItemSelector : MonoBehaviour
             }
         }
     }
-    public void Haveflashlight()
-    {
-        Flashlight = true;
-    }
-    public void HaveGun()
-    {
-        Gun = true;
-
-
-
-    }
-
-    public void HaveScanner()
-    {
-        Scanner = true;
-
-
-
-    }
+    
 
     public string names()
     {

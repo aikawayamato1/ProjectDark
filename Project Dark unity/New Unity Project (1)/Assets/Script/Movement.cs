@@ -5,35 +5,52 @@ using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
-    
+    [Header("Controller")]
     public CharacterController controller;
     public float speed=10f;
     public float basespeed=10f;
+
+    [Header("Rigidbody")]
     private Rigidbody rigidbody;
+
+    [Header("Menu")]
     public bool isActiveMenu;
-    private bool isRegenerate =false;
+    public GameObject Canvas;
+
+    [Header("Stamina")]
     public CanvasGroup staminaslide;
     private bool mFaded=false;
     float alpha;
-    bool isHiding = false;
-    public AudioManager AM;
-    bool running=false;
 
-    public GameObject Canvas;
-    public float jumpheight =3f;
+    [Header("Audio")]
+    public AudioManager AM;
+   
+
+
+    [Header("Running")]
     public bool isRunning = true;
+    private bool isRegenerate =false;
     public float stamina = 100f;
     public float basestamina = 100f;
+    bool running=false;
+
+    [Header("Unused")]
     public float gravity = -9.81f;
     public Transform groundcheck;
     public float GroundDistance = 0.4f;
     public LayerMask groundMask;
+    public float jumpheight =3f;
+    public bool isGrounded;
+
+    [Header("Hide")]
     public Hide hides;
     public bool isHidings;
     public Slider stm;
-    Vector3 lastpost;
+    bool isHiding = false;
+
+
     Vector3 velocity;
-    public bool isGrounded;
+    
     bool isTouched=false;
 
     float x;
@@ -43,7 +60,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        lastpost = transform.position;
+        
         SetMaxStamina(basestamina);
         alpha = staminaslide.alpha;
         isActiveMenu = false;
