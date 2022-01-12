@@ -34,7 +34,7 @@ public class Ultrasonic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gm.ax() == 2 || gm.bx() == 2 || gm.cx() == 2)
+        if (gm.ax() == 1 || gm.bx() == 1 || gm.cx() == 1)
         {
             useable = true;
         }
