@@ -46,6 +46,7 @@ public class ItemSelector : MonoBehaviour
     public GameObject flashlight;
     public GameObject gun;
     public GameObject scanner;
+    public GameObject UltrasonicAnalyzers;
 
 
 
@@ -206,6 +207,13 @@ public class ItemSelector : MonoBehaviour
             if (hit.transform.tag == "Scanner")
             {
                 items[totalitem] = scanner;
+                totalitem++;
+                Destroy(hit.transform.gameObject);
+
+            }
+            if (hit.transform.tag == "UltrasonicAnalyzer")
+            {
+                items[totalitem] = UltrasonicAnalyzers;
                 totalitem++;
                 Destroy(hit.transform.gameObject);
 

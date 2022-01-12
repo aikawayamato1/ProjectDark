@@ -16,6 +16,7 @@ TagManager:
   - Evidence
   - Map
   - Door
+  - UltrasonicAnalyzer
   layers:
   - Default
   - TransparentFX

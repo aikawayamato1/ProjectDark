@@ -13,6 +13,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip Run;
     public AudioClip shoot;
     public AudioClip Scan;
+    public AudioClip analyzer;
     public AudioClip Medkit;
     public AudioClip Flashlight;
     public AudioClip dead;
@@ -76,6 +77,18 @@ public class AudioManager : MonoBehaviour
 
         ItemAudio.clip = Scan;
         
+        if (ItemAudio.isPlaying == false)
+        {
+
+            ItemAudio.Play();
+        }
+
+    }
+    public void Analyzer()
+    {
+
+        ItemAudio.clip = analyzer;
+
         if (ItemAudio.isPlaying == false)
         {
 
