@@ -31,6 +31,7 @@ public class ItemSelector : MonoBehaviour
     public Text B;
     public Text C;
     public Text FL;
+    public Text Interacts;
     public GameObject Interacttext;
     string itemname;
 
@@ -47,8 +48,10 @@ public class ItemSelector : MonoBehaviour
     public GameObject gun;
     public GameObject scanner;
     public GameObject UltrasonicAnalyzers;
-
-
+    public GameObject Thermometer;
+    public GameObject sonicGun;
+    public GameObject SilverLaced;
+    public GameObject Tranquilizer;
 
 
 
@@ -204,6 +207,13 @@ public class ItemSelector : MonoBehaviour
                 Destroy(hit.transform.gameObject);
 
             }
+            if (hit.transform.tag == "Tranquilizer")
+            {
+                items[totalitem] = Tranquilizer;
+                totalitem++;
+                Destroy(hit.transform.gameObject);
+
+            }
             if (hit.transform.tag == "Scanner")
             {
                 items[totalitem] = scanner;
@@ -211,9 +221,30 @@ public class ItemSelector : MonoBehaviour
                 Destroy(hit.transform.gameObject);
 
             }
+            if (hit.transform.tag == "Thermometer")
+            {
+                items[totalitem] = Thermometer;
+                totalitem++;
+                Destroy(hit.transform.gameObject);
+
+            }
+            if (hit.transform.tag == "SonicGun")
+            {
+                items[totalitem] = sonicGun;
+                totalitem++;
+                Destroy(hit.transform.gameObject);
+
+            }
             if (hit.transform.tag == "UltrasonicAnalyzer")
             {
                 items[totalitem] = UltrasonicAnalyzers;
+                totalitem++;
+                Destroy(hit.transform.gameObject);
+
+            }
+            if (hit.transform.tag == "SilverLAced")
+            {
+                items[totalitem] = SilverLaced;
                 totalitem++;
                 Destroy(hit.transform.gameObject);
 
@@ -239,6 +270,7 @@ public class ItemSelector : MonoBehaviour
             if(hit.transform.gameObject.layer == 13)
             {
                 Interacttext.SetActive(true);
+                Interacts.text = "Press E to take" + hit.transform.gameObject.name;
             }
             else
             {

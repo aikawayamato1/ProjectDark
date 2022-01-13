@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GunShoot : MonoBehaviour
+
+public class Tranquilizer : MonoBehaviour
 {
     public float durationChase = 10f;
     public float damage = 10f;
     public float range = 100f;
-    public int bullet = 10;
+    public int bullet = 3;
     public Camera fpscam;
     public Text Ammo;
     public Text itemname;
@@ -37,7 +38,7 @@ public class GunShoot : MonoBehaviour
     }
     private void OnEnable()
     {
-        itemname.text = "Gun";
+        itemname.text = "Tranquilizer";
     }
     private void OnDisable()
     {
@@ -55,42 +56,41 @@ public class GunShoot : MonoBehaviour
             {
                 am.GunShooting();
                 Shoot();
-                
+
             }
         }
-        
-        
-        
-        
-            Ammo.text = bullet + "/10";
-        
-        
-        
-          
-        
-        
+
+
+
+
+        Ammo.text = bullet + "/10";
+
+
+
+
+
+
     }
 
     void Shoot()
     {
         RaycastHit hit;
-        if( Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit,range))
+        if (Physics.Raycast(fpscam.transform.position, fpscam.transform.forward, out hit, range))
         {
-            
+
             Debug.Log(hit.transform.name);
-            if(hit.transform.tag=="Monster")
+            if (hit.transform.tag == "Monster")
             {
                 Monsters.GetComponent<Monster>().Getshooted();
-                if (gm.getMonsterIndex() == 1)
+                if (gm.getMonsterIndex() == 3)
                 {
-                    gm.GetCompleteShotgun();
+                    gm.GetCompleteTranquilizer();
                 }
             }
-           GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impact, 1f);
         }
         bullet--;
     }
-    
-    
+
 }

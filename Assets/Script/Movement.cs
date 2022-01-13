@@ -24,8 +24,8 @@ public class Movement : MonoBehaviour
 
     [Header("Audio")]
     public AudioManager AM;
-   
-
+    [Header("Game Manager")]
+    public GameManager gm;
 
     [Header("Running")]
     public bool isRunning = true;
@@ -34,14 +34,9 @@ public class Movement : MonoBehaviour
     public float basestamina = 100f;
     bool running=false;
 
-    [Header("Unused")]
-    public float gravity = -9.81f;
-    public Transform groundcheck;
-    public float GroundDistance = 0.4f;
-    public LayerMask groundMask;
-    public float jumpheight =3f;
-    public bool isGrounded;
-
+    [Header("Temperature")]
+    public LayerMask Enemy;
+    public float radius;
     [Header("Hide")]
     public Hide hides;
     public bool isHidings;
@@ -60,7 +55,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         SetMaxStamina(basestamina);
         alpha = staminaslide.alpha;
         isActiveMenu = false;
@@ -83,7 +78,21 @@ public class Movement : MonoBehaviour
         Faded();
         CheckRegen();
         audioPlaying();
-        
+        LowTemperature();
+    }
+    public void LowTemperature()
+    {
+        if (gm.ax() == 6 || gm.bx() == 6 || gm.cx() == 6)
+        {
+            if(Physics.CheckSphere(transform.position, radius, Enemy))
+            {
+                AM.lowTemp();
+            }
+            else
+            {
+                AM.ChangeStops();
+            }
+        }
     }
     public void Journal()
     {
@@ -120,16 +129,6 @@ public class Movement : MonoBehaviour
     }
     public void Move()
     {
-        //isGrounded = Physics.CheckSphere(groundcheck.position, GroundDistance, groundMask);
-
-        // if (isGrounded && velocity.y < 0)
-        // {
-        //  velocity.y = -2f;
-        // }
-        // if (Input.GetKey(KeyCode.Space) && isGrounded)
-        // {
-        //      velocity.y = Mathf.Sqrt(jumpheight * -2f * gravity);
-        // }
         
 
 
@@ -143,21 +142,13 @@ public class Movement : MonoBehaviour
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * speed * Time.deltaTime);
 
-            velocity.y += gravity * Time.deltaTime;
+            
             controller.Move(velocity * Time.deltaTime);
         
         
 
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-       
-            if (collision.gameObject.layer==9)
-            {
-                isGrounded = true;
-            }
-        
-    }
+    
    
     private void audioPlaying()
     {

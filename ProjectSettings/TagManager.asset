@@ -17,6 +17,10 @@ TagManager:
   - Map
   - Door
   - UltrasonicAnalyzer
+  - Thermometer
+  - SonicGun
+  - SilverLaced
+  - Tranquilizer
   layers:
   - Default
   - TransparentFX
@@ -33,7 +37,7 @@ TagManager:
   - Hide
   - Items
   - isPlayer
-  - 
+  - Enemy
   - 
   - 
   - 

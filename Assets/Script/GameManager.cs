@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     public bool type;
 
     int shooted =0;
+    int shootedlaced = 0;
+    int shootedTrq = 0;
 
     private bool[] evidence;
     private bool isComplete;
@@ -73,7 +75,8 @@ public class GameManager : MonoBehaviour
     {
         return BloodEffect;
     }
-    public void GetComplete()
+    
+    public void GetCompleteShotgun()
     {
         if(isComplete)
         {
@@ -88,6 +91,38 @@ public class GameManager : MonoBehaviour
             
         }
         
+    }
+    public void GetCompleteTranquilizer()
+    {
+        if (isComplete)
+        {
+            if (shooted == 3)
+            {
+                GameEnd();
+            }
+            else
+            {
+                shooted++;
+            }
+
+        }
+
+    }
+    public void GetCompleteSilver()
+    {
+        if (isComplete)
+        {
+            if (shootedlaced == 4)
+            {
+                GameEnd();
+            }
+            else
+            {
+                shootedlaced++;
+            }
+
+        }
+
     }
     private void Start()
     {

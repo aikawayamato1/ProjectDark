@@ -7,11 +7,11 @@ public class SonicBlast : MonoBehaviour
 {
     public float durationChase = 10f;
     public float firespeed = 0.5f;
-    public float damage = 10f;
+    
     public float range = 100f;
-    public int bullet = 10;
+    
     public Camera fpscam;
-    public Text Ammo;
+    
     public Text itemname;
     public GameObject impactEffect;
     private HitEnemyAlert isHittingMonster;
@@ -67,7 +67,7 @@ public class SonicBlast : MonoBehaviour
             if (hit.transform.tag == "Monster")
             {
                 Monsters.GetComponent<Monster>().Getshooted();
-                gm.GetComplete();
+                
             }
             GameObject impact = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impact, 1f);

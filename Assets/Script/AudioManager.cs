@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip shoot;
     public AudioClip Scan;
     public AudioClip analyzer;
+    public AudioClip freezing;
     public AudioClip Medkit;
     public AudioClip Flashlight;
     public AudioClip dead;
@@ -88,6 +89,18 @@ public class AudioManager : MonoBehaviour
     {
 
         ItemAudio.clip = analyzer;
+
+        if (ItemAudio.isPlaying == false)
+        {
+
+            ItemAudio.Play();
+        }
+
+    }
+    public void lowTemp()
+    {
+
+        ItemAudio.clip = freezing;
 
         if (ItemAudio.isPlaying == false)
         {
