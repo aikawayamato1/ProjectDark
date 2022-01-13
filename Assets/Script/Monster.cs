@@ -9,6 +9,7 @@ public class Monster : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public GameObject interact;
+    public GameManager gm;
     public LayerMask isGround, isPlayer;
 
     [Header("Hide System")]
@@ -43,6 +44,9 @@ public class Monster : MonoBehaviour
     public bool playerRound;
     private bool chasing;
     public GameObject LOS;
+    public bool isBaited;
+    float x = 60f;
+    float y = 30f;
 
     [Header("Raycast")]
     private RaycastHit hit;
@@ -65,6 +69,7 @@ public class Monster : MonoBehaviour
         am = GetComponent<MonsterAudio>();
         audio = GameObject.Find("MonsterAudio").GetComponent<AudioSource>();
         EA = GetComponent<EnemyAttack>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -73,82 +78,106 @@ public class Monster : MonoBehaviour
         playerRound = Physics.CheckSphere(transform.position, round,isPlayer);
         
         hidingcheck = hider.GetisHiding();
-       
-       
-        
-        if (playerInSightRange|| getShoot)
+        GameObject bait = GameObject.Find("Bulb Bait putted");
+        if (bait)
         {
-            
-            if (!hidingcheck)
-            {
-                if(getShoot)
-                {
-                    timer = 10f;
+            isBaited = true;
+        }
+        else
+        {
+            isBaited = false;
+        }
+        if (isBaited)
+        {
+            walkTowardBait();
+        }
+        else
+        {
 
-                    agent.speed = 5f;
-                    timer -= Time.deltaTime;
-                    if (timer == 0f || hider)
+            if (playerInSightRange || getShoot)
+            {
+
+                if (!hidingcheck)
+                {
+                    if (getShoot)
                     {
-                        getShoot = false;
-                        agent.speed = 10f;
+                        timer = 10f;
+
+                        agent.speed = 5f;
+                        timer -= Time.deltaTime;
+                        if (timer == 0f || hider)
+                        {
+                            getShoot = false;
+                            agent.speed = 10f;
+                        }
                     }
+
+
+                    ChasePlayer();
+
+
+                }
+                else
+                {
+                    Patroling();
                 }
 
-              
-                ChasePlayer();
-                
-                
             }
-            else
+
+            if (playerRound || getShoot)
+            {
+
+                if (!hidingcheck)
+                {
+                    if (getShoot)
+                    {
+                        timer = 10f;
+
+                        agent.speed = 5f;
+                        timer -= Time.deltaTime;
+                        if (timer <= 0f || hider)
+                        {
+                            agent.speed = 10f;
+                            getShoot = false;
+
+                        }
+                    }
+
+                    ChasePlayer();
+
+
+                }
+
+
+            }
+            if (!playerRound || hidingcheck)
             {
                 Patroling();
             }
-            
-        }
 
-        if (playerRound || getShoot)
-        {
 
-            if (!hidingcheck)
+
+
+
+            if (!playerInSightRange && !playerRound)
             {
-                if (getShoot)
-                {
-                    timer = 10f;
-
-                    agent.speed = 5f;
-                    timer -= Time.deltaTime;
-                    if (timer <= 0f || hider)
-                    {
-                        agent.speed = 10f;
-                        getShoot = false;
-
-                    }
-                }
-
-                ChasePlayer();
-                
-
+                Patroling();
             }
+
+        }
+
+       
+    }
+    void walkTowardBait()
+    {
+        if(gm.getMonsterIndex()==2)
+        {
+            GameObject bait = GameObject.Find("Bulb Bait putted");
             
-
+                agent.SetDestination(bait.transform.position);
+            
+            
         }
-        if (!playerRound || hidingcheck)
-        {
-            Patroling();
-        }
-
-        
-
-        
-
-        if (!playerInSightRange && !playerRound)
-        {
-            Patroling();
-        }
-
-        
-
-
     }
     void AnimatingWalk()
     {

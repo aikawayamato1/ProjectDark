@@ -21,6 +21,7 @@ TagManager:
   - SonicGun
   - SilverLaced
   - Tranquilizer
+  - BulbBait
   layers:
   - Default
   - TransparentFX

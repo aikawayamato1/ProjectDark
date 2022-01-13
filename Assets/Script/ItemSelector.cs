@@ -52,6 +52,7 @@ public class ItemSelector : MonoBehaviour
     public GameObject sonicGun;
     public GameObject SilverLaced;
     public GameObject Tranquilizer;
+    public GameObject Bulbbait;
 
 
 
@@ -242,9 +243,16 @@ public class ItemSelector : MonoBehaviour
                 Destroy(hit.transform.gameObject);
 
             }
-            if (hit.transform.tag == "SilverLAced")
+            if (hit.transform.tag == "SilverLaced")
             {
                 items[totalitem] = SilverLaced;
+                totalitem++;
+                Destroy(hit.transform.gameObject);
+
+            }
+            if (hit.transform.tag == "BulbBait")
+            {
+                items[totalitem] = Bulbbait;
                 totalitem++;
                 Destroy(hit.transform.gameObject);
 

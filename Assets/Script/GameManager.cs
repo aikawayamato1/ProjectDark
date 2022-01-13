@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
     {
         if (isComplete)
         {
-            if (shooted == 3)
+            if (shooted == 1)
             {
                 GameEnd();
             }
@@ -120,6 +120,15 @@ public class GameManager : MonoBehaviour
             {
                 shootedlaced++;
             }
+
+        }
+
+    }
+    public void GetCompleteBulb()
+    {
+        if (isComplete)
+        {
+            GameEnd();
 
         }
 

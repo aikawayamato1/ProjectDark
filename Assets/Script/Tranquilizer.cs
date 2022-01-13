@@ -63,7 +63,7 @@ public class Tranquilizer : MonoBehaviour
 
 
 
-        Ammo.text = bullet + "/10";
+        Ammo.text = bullet + "/3";
 
 
 
