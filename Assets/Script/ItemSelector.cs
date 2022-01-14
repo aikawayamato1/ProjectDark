@@ -23,13 +23,10 @@ public class ItemSelector : MonoBehaviour
     [Header("Game Manager")]
     public GameManager gm;
 
-    [Header("Evidence")]
-    public int totalEvidence=0;
+    
 
     [Header("Text")]
-    public Text A;
-    public Text B;
-    public Text C;
+    
     public Text FL;
     public Text Interacts;
     public GameObject Interacttext;
@@ -77,107 +74,7 @@ public class ItemSelector : MonoBehaviour
             WeaponRay();
         }
     }
-    void evidenceNames(int a, int b,int c)
-    {
-      
-        totalEvidence++;
-        if (totalEvidence == 1)
-        {
-            if (a == 1)
-            {
-                A.text = "Ultrasonic Sound Detection";
-            }
-            if (a == 2)
-            {
-                A.text = "EMF 5";
-            }
-            if (a == 3)
-            {
-                A.text = "Hiding Place: Pocket dimension";
-            }
-            if (a == 4)
-            {
-                A.text = "Mind Control Voices";
-            }
-            if (a == 5)
-            {
-                A.text = "Dead Bodies Present";
-            }
-            if (a == 6)
-            {
-                A.text = "Low Temperature";
-            }
-            if (a == 7)
-            {
-                A.text = "Tough skins";
-            }
-        }
-        if (totalEvidence == 2)
-        {
-            if (b == 1)
-            {
-                B.text = "Ultrasonic Sound Detection";
-            }
-            if (b == 2)
-            {
-                B.text = "EMF 5";
-            }
-            if (b == 3)
-            {
-                B.text = "Pocket dimension";
-            }
-            if (b == 4)
-            {
-                B.text = "Mind Control Voices";
-            }
-            if (b == 5)
-            {
-                B.text = "Dead Bodies Present";
-            }
-            if (b == 6)
-            {
-                B.text = "Low Temperature";
-            }
-            if (b == 7)
-            {
-                B.text = "Tough skins";
-            }
-        }
-        if (totalEvidence == 3)
-        {
-            if (c == 1)
-            {
-                C.text = "Ultrasonic Sound Detection";
-
-            }
-            if (c == 2)
-            {
-                C.text = "EMF 5";
-            }
-            if (c == 3)
-            {
-                C.text = "Hiding Place: Pocket dimension";
-            }
-            if (c == 4)
-            {
-                C.text = "Mind Control Voices";
-            }
-            if (c == 5)
-            {
-                C.text = "Dead Bodies Present";
-            }
-            if (c == 6)
-            {
-                C.text = "Low Temperature";
-            }
-            if (c == 7)
-            {
-                C.text = "Tough skins";
-            }
-        }
-        
-        
-    }
+   
     void WeaponRay()
     {
         RaycastHit hit;
@@ -194,12 +91,7 @@ public class ItemSelector : MonoBehaviour
                 Destroy(hit.transform.gameObject);
 
             }
-            if (hit.transform.tag == "Evidence")
-            {
-                evidenceNames(gm.ax(), gm.bx(), gm.cx());
-                Destroy(hit.transform.gameObject);
-
-            }
+            
 
             if (hit.transform.tag == "flashlight")
             {
