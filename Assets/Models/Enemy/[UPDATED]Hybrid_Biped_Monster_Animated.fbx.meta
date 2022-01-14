@@ -413,7 +413,32 @@ ModelImporter:
     13700112: rToe
     13700114: tongueBase
     13700116: upperJaw
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat
+    second: {fileID: 2100008, guid: 2838037e55c8cae47a26c98ed0ff4dce, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.1
+    second: {fileID: 2100000, guid: 8c25863e78c4ed2498a082118bac7053, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.2
+    second: {fileID: 2100004, guid: 5312c8a78cd2cba449bd08bb754628ef, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.3
+    second: {fileID: 2100004, guid: 8035a5b8228653049a95bc266865ed46, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat.4
+    second: {fileID: 2100008, guid: e54a8c8710f2a90498d00f7175ef060d, type: 3}
   materials:
     importMaterials: 1
     materialName: 0
