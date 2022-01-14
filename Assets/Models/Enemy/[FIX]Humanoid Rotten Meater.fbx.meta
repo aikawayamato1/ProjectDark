@@ -138,7 +138,27 @@ ModelImporter:
     13700008: Cylinder.020
     13700010: Cylinder.042
     13700012: Plane
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: f8e8bfc8eeb914158a079e7c2498dddd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 9c4f3321379ad954e97a4edef5bf1c74, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 4ff0d775ea6364942bbfbe85f6479011, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100042, guid: abf1c5588d816934f99ce01d9e8398fb, type: 3}
   materials:
     importMaterials: 1
     materialName: 0

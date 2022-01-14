@@ -27,8 +27,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.21831036, z: 1}
+  m_Center: {x: 0, y: 0.60708, z: 0}
 --- !u!114 &1857075206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,11 +51,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: d21fbca1f33ba424e907ff5d95f96a32, type: 3}
       propertyPath: m_Name
-      value: Bulb Bait putted
+      value: Bulb Bait (putted)
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d21fbca1f33ba424e907ff5d95f96a32, type: 3}
       propertyPath: m_TagString
-      value: BulbBait
+      value: BulBaitPutted
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: d21fbca1f33ba424e907ff5d95f96a32, type: 3}
       propertyPath: m_Layer

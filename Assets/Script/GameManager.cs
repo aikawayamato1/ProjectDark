@@ -78,7 +78,8 @@ public class GameManager : MonoBehaviour
     
     public void GetCompleteShotgun()
     {
-        if(isComplete)
+        Debug.Log("shooted");
+        if (isComplete)
         {
             if(shooted==3)
             {
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 shooted++;
+                Debug.Log("shooteds");
             }
             
         }
@@ -94,22 +96,20 @@ public class GameManager : MonoBehaviour
     }
     public void GetCompleteTranquilizer()
     {
+        Debug.Log("shooted");
         if (isComplete)
         {
-            if (shooted == 1)
-            {
+           
                 GameEnd();
-            }
-            else
-            {
-                shooted++;
-            }
+            
+            
 
         }
 
     }
     public void GetCompleteSilver()
     {
+        Debug.Log("shooted");
         if (isComplete)
         {
             if (shootedlaced == 4)
@@ -119,6 +119,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 shootedlaced++;
+                Debug.Log("shooteds");
             }
 
         }

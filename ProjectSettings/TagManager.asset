@@ -22,6 +22,7 @@ TagManager:
   - SilverLaced
   - Tranquilizer
   - BulbBait
+  - BulBaitPutted
   layers:
   - Default
   - TransparentFX

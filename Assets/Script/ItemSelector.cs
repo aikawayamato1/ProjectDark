@@ -268,6 +268,7 @@ public class ItemSelector : MonoBehaviour
         }
 
     }
+    
     void Interactable()
     {
         RaycastHit hit;
@@ -278,7 +279,7 @@ public class ItemSelector : MonoBehaviour
             if(hit.transform.gameObject.layer == 13)
             {
                 Interacttext.SetActive(true);
-                Interacts.text = "Press E to take" + hit.transform.gameObject.name;
+                Interacts.text = "Press E to take " + hit.transform.gameObject.name;
             }
             else
             {
