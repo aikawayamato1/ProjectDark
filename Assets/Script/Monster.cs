@@ -78,8 +78,8 @@ public class Monster : MonoBehaviour
         playerRound = Physics.CheckSphere(transform.position, round,isPlayer);
         
         hidingcheck = hider.GetisHiding();
-        GameObject bait = GameObject.Find("Bulb Bait putted");
-        if (bait)
+        
+        if (GameObject.Find("Bulb Bait (putted)")!=null)
         {
             isBaited = true;
         }
@@ -172,7 +172,7 @@ public class Monster : MonoBehaviour
     {
         if(gm.getMonsterIndex()==2 && gm.getIsComplete()==true)
         {
-            GameObject bait = GameObject.Find("Bulb Bait putted");
+            GameObject bait = GameObject.Find("Bulb Bait (putted)");
             
                 agent.SetDestination(bait.transform.position);
             

@@ -20,13 +20,13 @@ public class Crouch : MonoBehaviour
         if (Input.GetKey(nunduk))
         {
             mover.Cro();
-            controller.height = 1.5f;
+            
             
         }
         else
         {
             mover.croreturn();
-            controller.height = 3.8f;
+            
             
         }
     }

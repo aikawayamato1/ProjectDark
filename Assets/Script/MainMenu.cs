@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject training;
     private void Start()
     {
       
@@ -17,9 +18,13 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    public void training()
+    public void Training()
     {
-
+        training.SetActive(true);
+    }
+    public void TrainingBack()
+    {
+        training.SetActive(false);
     }
     public void Options()
     {

@@ -6,8 +6,10 @@ public class JournalMenu : MonoBehaviour
 {
     public GameObject Canvas;
     public GameObject PrintButton;
-   
+    public GameObject CanvasCase;
     public GameManager gm;
+    public GameObject[] Cases;
+    int totalcases=0;
     private bool EvidencesPrintButton=false;
     
     private void OnEnable()
@@ -36,6 +38,7 @@ public class JournalMenu : MonoBehaviour
         {
             PrintButton.SetActive(true);
             EvidencesPrintButton = true;
+            CaseClose();
         }
         else
         {
@@ -46,20 +49,45 @@ public class JournalMenu : MonoBehaviour
     }
     public void Case()
     {
-
+        CanvasCase.SetActive(true);
+        PrintButton.SetActive(false);
+        EvidencesPrintButton = false;
     }
-    public void Equipment()
+    public void CaseClose()
     {
-
+        CanvasCase.SetActive(false);
     }
+    
 
     public void next()
     {
-        //belum
+        for (int i = 0; i < 7; i++)
+        {
+            if (i == totalcases)
+            {
+                Cases[i].gameObject.SetActive(true);
+                
+            }
+            else
+            {
+                Cases[i].gameObject.SetActive(false);
+            }
+        }
     }
     public void Prev()
     {
-        //belum
+        for (int i = totalcases; i >= 0; i--)
+        {
+            if (i == totalcases)
+            {
+                Cases[i].gameObject.SetActive(true);
+
+            }
+            else
+            {
+                Cases[i].gameObject.SetActive(false);
+            }
+        }
     }
     void UnlockMouse()
     {
