@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
     public GameObject how1;
     public GameObject how2;
     public GameObject how3;
+    public GameObject deadBody;
+    public GameObject portal;
 
     [Header("Etc")]
     public Text types;
@@ -180,8 +182,24 @@ public class GameManager : MonoBehaviour
 
         
 
+        if(a==5||b==5||c==5)
+        {
+            deadBody.SetActive(true);
 
-        
+        }
+        else
+        {
+            deadBody.SetActive(false);
+        }
+        if (a == 3 || b == 3 || c == 3)
+        {
+            portal.SetActive(true);
+
+        }
+        else
+        {
+            portal.SetActive(false);
+        }
         an = ec.animl();
         hy = ec.hybr();
         hu = ec.hum();
@@ -332,5 +350,8 @@ public class GameManager : MonoBehaviour
     {
         return c;
     }
-
+    public bool getIsComplete()
+    {
+        return isComplete;
+    }
 }

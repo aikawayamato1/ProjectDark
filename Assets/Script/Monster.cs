@@ -170,7 +170,7 @@ public class Monster : MonoBehaviour
     }
     void walkTowardBait()
     {
-        if(gm.getMonsterIndex()==2)
+        if(gm.getMonsterIndex()==2 && gm.getIsComplete()==true)
         {
             GameObject bait = GameObject.Find("Bulb Bait putted");
             
