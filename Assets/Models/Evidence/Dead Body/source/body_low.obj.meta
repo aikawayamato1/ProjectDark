@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 guid: 8df72477d4f4d6744ae7174664b3b4ca
-=======
-guid: a0424f15e8302a546b881bd80a11275d
->>>>>>> a16cd405dcad1a4e8599a24a9bfde319cdde3ed5
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -15,6 +11,7 @@ ModelImporter:
     2300000: skelet
     3300000: skelet
     4300000: skelet
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -46,11 +43,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-<<<<<<< HEAD
-    globalScale: 0.05
-=======
     globalScale: 1
->>>>>>> a16cd405dcad1a4e8599a24a9bfde319cdde3ed5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -72,7 +65,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -99,7 +92,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
