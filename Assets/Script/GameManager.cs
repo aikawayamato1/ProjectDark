@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     public GameObject portal;
 
     [Header("Etc")]
-    public Text types;
+    
     public bool HaveJournal=false;
     public GameObject BloodEffect;
     private CanvasGroup Blood;
@@ -148,23 +148,8 @@ public class GameManager : MonoBehaviour
             b = Random.Range(1, 7);
             c = Random.Range(1, 7);
         }
-        randomselector = Random.Range(1, 5);
-        if(randomselector==1)
-        {
-            types.text = "Humanoid";
-        }
-        if (randomselector == 2)
-        {
-            types.text = "Chaos";
-        }
-        if (randomselector == 3)
-        {
-            types.text = "Beast";
-        }
-        if (randomselector == 4)
-        {
-            types.text = "Hybrid";
-        }
+        randomselector = Random.Range(1, 4);
+        
         evidence = new bool[7];
     }
 

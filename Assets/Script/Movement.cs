@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public CharacterController controller;
     public float speed=10f;
     public float basespeed=10f;
+    public float gravity = -9.81f;
 
     [Header("Rigidbody")]
     private Rigidbody rigidbody;
@@ -140,9 +141,10 @@ public class Movement : MonoBehaviour
             x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
             Vector3 move = transform.right * x + transform.forward * z;
+            
             controller.Move(move * speed * Time.deltaTime);
 
-            
+             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
         
         

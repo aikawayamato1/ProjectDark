@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 1997971850761984552}
   m_Layer: 15
   m_Name: MonsterBlob
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -320,6 +320,7 @@ MonoBehaviour:
   agent: {fileID: 8629227648886092047}
   player: {fileID: 0}
   interact: {fileID: 0}
+  gm: {fileID: 0}
   isGround:
     serializedVersion: 2
     m_Bits: 512
@@ -341,6 +342,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerRound: 0
   LOS: {fileID: 0}
+  isBaited: 0
 --- !u!195 &8629227648886092047
 NavMeshAgent:
   m_ObjectHideFlags: 0

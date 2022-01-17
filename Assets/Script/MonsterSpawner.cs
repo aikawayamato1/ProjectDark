@@ -22,22 +22,15 @@ public class MonsterSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gm = GetComponent<GameManager>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         index = gm.getMonsterIndex();
-        enemy = new GameObject[5];
+        enemy = new GameObject[4];
         enemy[0] = human;
         enemy[1] = chaos;
         enemy[2] = beast;
         enemy[3] = hybrid;
-        if(time!=0)
-        {
-            while (time > 0)
-            {
-                time -= Time.deltaTime;
-            }
-        }
-        
-        SpawnEnemy();
+        Invoke("SpawnEnemy",30f);
+      
     }
     
     void SpawnEnemy()

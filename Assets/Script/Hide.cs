@@ -73,7 +73,7 @@ public class Hide : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(11, 12, false);
 
-        Player.transform.position = other.transform.position+new Vector3(1f,0f,1f);
+        Player.transform.position = other.transform.position+new Vector3(-1f,0f,-1f);
 
         move.backtobasespeed();
         isHiding = false;
@@ -106,6 +106,9 @@ public class Hide : MonoBehaviour
                     Canhides = false;
                 }
             }
+            
+                
+            
         }
         
 
