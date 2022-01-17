@@ -49,7 +49,10 @@ public class Ultrasonic : MonoBehaviour
                 analyze.text = "High";
                 am.Analyzer();
             }
-            
+            else
+            {
+                analyze.text = "Mid";
+            }
 
             
         }

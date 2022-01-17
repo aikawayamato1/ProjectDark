@@ -42,10 +42,11 @@ public class Thermometer : MonoBehaviour
         itemname.text = "--";
 
     }
+    float time;
     // Update is called once per frame
     void Update()
     {
-        
+       
         RaycastHit hit;
         if (gm.ax() == 6 || gm.bx() == 6 || gm.cx() == 6)
         {
@@ -55,22 +56,40 @@ public class Thermometer : MonoBehaviour
                 
                 if (hit.transform.tag == "Monster")
                 {
-                    celcius = Random.Range(-4f, 10f);
-                    degree.text = "" + celcius.ToString("F2");
+
+
+                    StartCoroutine(minusCelcius(1f)); 
+                    
+                    
                 }
                 else
                 {
-                    celcius = Random.Range(14f, 30f);
-                    degree.text = "" + celcius.ToString("F2");
+
+                    StartCoroutine(normalCelcius(1f));
+
                 }
-               
+                
             }
         }
         else
         {
-            celcius = Random.Range(14f, 30f);
-            degree.text = "" + celcius.ToString("F2");
+
+            StartCoroutine(normalCelcius(1f));
+
+
         }
+    }
+    IEnumerator minusCelcius(float time)
+    {
+        yield return new WaitForSeconds(time);
+        celcius = Random.Range(-4f, 10f);
+        degree.text = "" + celcius.ToString("F2");
+    }
+    IEnumerator normalCelcius(float time)
+    {
+        yield return new WaitForSeconds(time);
+        celcius = Random.Range(14f, 30f);
+        degree.text = "" + celcius.ToString("F2");
     }
         
 }

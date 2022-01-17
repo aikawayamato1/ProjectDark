@@ -141,7 +141,7 @@ public class Movement : MonoBehaviour
             x = Input.GetAxis("Horizontal");
             z = Input.GetAxis("Vertical");
             Vector3 move = transform.right * x + transform.forward * z;
-            move += Physics.gravity;
+            
             controller.Move(move * speed * Time.deltaTime);
 
              velocity.y += gravity * Time.deltaTime;

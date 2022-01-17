@@ -10840,7 +10840,7 @@ GameObject:
   - component: {fileID: 4688196238401177966}
   m_Layer: 15
   m_Name: MonsterHybrid
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10955,6 +10955,7 @@ MonoBehaviour:
   agent: {fileID: 5982464297558122454}
   player: {fileID: 0}
   interact: {fileID: 0}
+  gm: {fileID: 0}
   isGround:
     serializedVersion: 2
     m_Bits: 512
@@ -10976,6 +10977,7 @@ MonoBehaviour:
   playerInSightRange: 0
   playerRound: 0
   LOS: {fileID: 0}
+  isBaited: 0
 --- !u!114 &5982464297558122458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11044,8 +11046,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 6, z: 6}
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Size: {x: 4.91483, y: 6, z: 2.665738}
+  m_Center: {x: -0.061198592, y: 4, z: 0.2209382}
 --- !u!65 &6636108546378746884
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11057,8 +11059,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7, y: 7, z: 7}
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Size: {x: 4.015402, y: 6, z: 2.665738}
+  m_Center: {x: -0.5109129, y: 4, z: 0.2209382}
 --- !u!82 &4688196238401177966
 AudioSource:
   m_ObjectHideFlags: 0

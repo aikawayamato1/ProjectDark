@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
             b = Random.Range(1, 7);
             c = Random.Range(1, 7);
         }
-        randomselector = Random.Range(1, 5);
+        randomselector = Random.Range(1, 4);
         
         evidence = new bool[7];
     }
