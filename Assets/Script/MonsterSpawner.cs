@@ -29,9 +29,11 @@ public class MonsterSpawner : MonoBehaviour
         enemy[1] = chaos;
         enemy[2] = beast;
         enemy[3] = hybrid;
-        Invoke("SpawnEnemy",30f);
+        Invoke("SpawnEnemy",1f);
+        
       
     }
+    
     
     void SpawnEnemy()
     {
